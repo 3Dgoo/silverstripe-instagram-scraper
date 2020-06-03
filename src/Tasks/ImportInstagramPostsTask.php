@@ -55,7 +55,7 @@ class ImportInstagramPostsTask extends BuildTask
 
         $instagramPost->InstagramID = $instagramMedia->getId();
         $instagramPost->Caption = $instagramMedia->getCaption();
-        $instagramPost->Handle = $instagramMedia->getAccount()->getUsername();
+        $instagramPost->Handle = $instagramMedia->getOwner()->getUsername();
         $instagramPost->Link = $instagramMedia->getLink();
         $instagramPost->Type = $instagramMedia->getType();
         $instagramPost->ImageLowResolutionUrl = $instagramMedia->getImageLowResolutionUrl();
