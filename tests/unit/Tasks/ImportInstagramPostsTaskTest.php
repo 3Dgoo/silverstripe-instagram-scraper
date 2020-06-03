@@ -2,6 +2,7 @@
 
 namespace X3dgoo\InstagramScraper\Tests;
 
+use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Dev\SapphireTest;
 use X3dgoo\InstagramScraper\Tasks\ImportInstagramPostsTask;
 
@@ -14,7 +15,13 @@ class ImportInstagramPostsTaskTest extends SapphireTest
         $importInstagramPostsTask = ImportInstagramPostsTask::singleton();
         $this->assertNotNull($importInstagramPostsTask);
 
-        $response = $importInstagramPostsTask->run(null);
+        $request = HTTPRequest::create(
+            'GET',
+            'dev/tasks/import-instagram-posts',
+            []
+        );
+
+        $response = $importInstagramPostsTask->run($request);
 
         $this->assertNull($response);
     }
