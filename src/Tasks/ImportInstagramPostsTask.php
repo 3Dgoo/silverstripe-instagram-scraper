@@ -19,11 +19,11 @@ class ImportInstagramPostsTask extends BuildTask
 
     public function run($request)
     {
-        $subject = $request->getVar('subject');
+        $username = $request->getVar('username');
         $username = Environment::getEnv('INSTAGRAM_USERNAME');
         $password = Environment::getEnv('INSTAGRAM_PASSWORD');
 
-        if (!$subject) {
+        if (!$username) {
             return;
         }
 
@@ -37,7 +37,7 @@ class ImportInstagramPostsTask extends BuildTask
             $instagram = new Instagram();
         }
 
-        $instagramMedias = $instagram->getMedias($subject);
+        $instagramMedias = $instagram->getMedias($username);
 
         if (empty($instagramMedias)) {
             return;

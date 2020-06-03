@@ -12,9 +12,9 @@ An Instagram scraper module for Silverstripe.
 
 ## Requirements
 
-* Silverstripe Framework 4.x
-* instagram-php-scraper 0.9
-* phpfastcache 7.1
+* [Silverstripe Framework 4.x](https://github.com/silverstripe/silverstripe-framework)
+* [Instagram PHP Scraper 0.9](https://github.com/postaddictme/instagram-php-scraper)
+* [phpfastcache 7.1](https://github.com/PHPSocialNetwork/phpfastcache)
 
 ## Installation (with composer)
 
@@ -22,4 +22,48 @@ An Instagram scraper module for Silverstripe.
 
 ## Usage
 
+Import Instagram posts of a certain username through running the following dev task:
 
+    php vendor/silverstripe/framework/cli-script.php dev/tasks/import-instagram-posts?username=<username>
+
+
+Sometimes Instagram may require us to log in to fetch this data. This can be done by adding the following to our
+`.env` file:
+
+    INSTAGRAM_USERNAME="<username>"
+    INSTAGRAM_PASSWORD="<password>"
+
+Once our Instagram posts are imported we can display them with the following code:
+
+PageController.php
+
+    use X3dgoo\InstagramScraper\Model\InstagramPost;
+
+    class PageController extends ContentController
+    {
+        public function InstagramPosts($limit = 10)
+        {
+            return InstagramPost::get()
+                ->filter([
+                    'Show' => true,
+                ])
+                ->limit($limit);
+        }
+    }
+
+Page.ss
+
+    <% if $InstagramPosts %>
+    <div class="instagram-posts">
+        <% loop $InstagramPosts %>
+        <div class="instagram-post">
+            <a href="https://www.instagram.com/p/{$ShortCode}" target="_blank">
+                <img src="$ImageThumbnailURL" alt="$Title.LimitWordCount(20).XML" />
+                <div class="caption">
+                    $Title.LimitWordCount(20)
+                </div>
+            </a>
+        </div>
+        <% end_loop %>
+    </div>
+    <% end_if %>
