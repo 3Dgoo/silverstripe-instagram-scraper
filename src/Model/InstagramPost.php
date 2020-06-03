@@ -34,7 +34,8 @@ class InstagramPost extends DataObject
 
     private static $summary_fields = [
         'ShortCode',
-        'Title',
+        'Handle',
+        'Caption',
         'Posted',
     ];
 }
