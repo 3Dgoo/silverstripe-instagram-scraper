@@ -44,12 +44,7 @@ class ImportInstagramPostsTask extends BuildTask
         }
 
         foreach ($instagramMedias as $instagramMedia) {
-            $instagramID = $instagramMedia->getId();
             $shortCode = $instagramMedia->getShortCode();
-            $title = $instagramMedia->getCaption();
-            $imageURL = $instagramMedia->getImageHighResolutionUrl();
-            $imageThumbnailURL = $instagramMedia->getImageThumbnailUrl();
-            $posted = $instagramMedia->getCreatedTime();
 
             $instagramPost = InstagramPost::get()->filter(['ShortCode' => $shortCode])->first();
 
@@ -58,12 +53,18 @@ class ImportInstagramPostsTask extends BuildTask
                 $instagramPost->ShortCode = $shortCode;
             }
 
-            $instagramPost->InstagramID = $instagramID;
-            $instagramPost->Title = $title;
-            $instagramPost->Handle = $handle;
-            $instagramPost->ImageURL = $imageURL;
-            $instagramPost->ImageThumbnailURL = $imageThumbnailURL;
-            $instagramPost->Posted = $posted;
+            $instagramPost->InstagramID = $instagramMedia->getId();
+            $instagramPost->Caption = $instagramMedia->getCaption();
+            $instagramPost->Handle = $instagramMedia->getOwnerId();
+            $instagramPost->Link = $instagramMedia->getLink();
+            $instagramPost->Type = $instagramMedia->getType();
+            $instagramPost->ImageLowResolutionUrl = $instagramMedia->getImageLowResolutionUrl();
+            $instagramPost->ImageThumbnailURL = $instagramMedia->getImageThumbnailUrl();
+            $instagramPost->ImageStandardResolutionUrl = $instagramMedia->getImageStandardResolutionUrl();
+            $instagramPost->ImageHighResolutionUrl = $instagramMedia->getImageHighResolutionUrl();
+            $instagramPost->Posted = $instagramMedia->getCreatedTime();
+            $instagramPost->LikesCount = $instagramMedia->getLikesCount();
+            $instagramPost->CommentsCount = $instagramMedia->getCommentsCount();
             $instagramPost->write();
 
             DB::alteration_message('Imported instagram post ' . $shortCode);

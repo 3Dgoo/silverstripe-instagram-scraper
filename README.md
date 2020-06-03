@@ -57,10 +57,10 @@ Once our Instagram posts are imported we can display them with the following cod
     <div class="instagram-posts">
         <% loop $InstagramPosts %>
         <div class="instagram-post">
-            <a href="https://www.instagram.com/p/{$ShortCode}" target="_blank">
-                <img src="$ImageThumbnailURL" alt="$Title.LimitWordCount(20).XML" />
+            <a href="{$Link}" target="_blank">
+                <img src="{$ImageHighResolutionUrl}" alt="{$Caption.LimitWordCount(20).XML}" />
                 <div class="caption">
-                    $Title.LimitWordCount(20)
+                    $Caption.LimitWordCount(20)
                 </div>
             </a>
         </div>
