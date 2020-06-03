@@ -27,21 +27,15 @@ class ImportInstagramPostsTask extends BuildTask
             return;
         }
 
-        $instagram = null;
+        $instagram = new Instagram();
 
         if ($loginUsername && $loginPassword) {
             $instagram = Instagram::withCredentials($loginUsername, $loginPassword, new Psr16Adapter('Files'));
             $instagram->login();
             $instagram->saveSession();
-        } else {
-            $instagram = new Instagram();
         }
 
         $instagramMedias = $instagram->getMedias($handle);
-
-        if (empty($instagramMedias)) {
-            return;
-        }
 
         foreach ($instagramMedias as $instagramMedia) {
             $this->importInstagramPost($instagramMedia, $handle);
