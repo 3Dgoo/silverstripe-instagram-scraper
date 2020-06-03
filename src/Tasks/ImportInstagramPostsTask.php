@@ -2,6 +2,7 @@
 
 namespace X3dgoo\InstagramScraper\Tasks;
 
+use InstagramScraper\Instagram;
 use Phpfastcache\Helper\Psr16Adapter;
 use SilverStripe\Core\Environment;
 use SilverStripe\Dev\BuildTask;
@@ -30,16 +31,16 @@ class ImportInstagramPostsTask extends BuildTask
         $instagram = null;
 
         if ($username && $password) {
-            $instagram = \InstagramScraper\Instagram::withCredentials($username, $password, new Psr16Adapter('Files'));
+            $instagram = Instagram::withCredentials($username, $password, new Psr16Adapter('Files'));
             $instagram->login();
             $instagram->saveSession();
         } else {
-            $instagram = new \InstagramScraper\Instagram();
+            $instagram = new Instagram();
         }
 
         $instagramMedias = $instagram->getMedias($siteConfig->InstagramID);
 
-        if (!$instagramMedias) {
+        if (empty($instagramMedias)) {
             return;
         }
 
