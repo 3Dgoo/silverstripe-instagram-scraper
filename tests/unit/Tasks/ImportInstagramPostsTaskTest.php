@@ -24,7 +24,6 @@ class ImportInstagramPostsTaskTest extends SapphireTest
 
         $response = $importInstagramPostsTask->run($request);
 
-        $this->assertNull($response);
         $this->assertEquals(0, InstagramPost::get()->count());
 
         $request = new HTTPRequest(
@@ -37,7 +36,6 @@ class ImportInstagramPostsTaskTest extends SapphireTest
 
         $response = $importInstagramPostsTask->run($request);
 
-        $this->assertNotNull($response);
-        $this->assertEquals(8, InstagramPost::get()->count());
+        $this->assertEquals(20, InstagramPost::get()->count());
     }
 }

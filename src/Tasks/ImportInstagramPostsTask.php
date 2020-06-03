@@ -44,11 +44,11 @@ class ImportInstagramPostsTask extends BuildTask
         }
 
         foreach ($instagramMedias as $instagramMedia) {
-            $this->importInstagramPost($instagramMedia);
+            $this->importInstagramPost($instagramMedia, $handle);
         }
     }
 
-    public function importInstagramPost($instagramMedia)
+    public function importInstagramPost($instagramMedia, $handle)
     {
         $shortCode = $instagramMedia->getShortCode();
 
@@ -61,7 +61,7 @@ class ImportInstagramPostsTask extends BuildTask
 
         $instagramPost->InstagramID = $instagramMedia->getId();
         $instagramPost->Caption = $instagramMedia->getCaption();
-        $instagramPost->Handle = $instagramMedia->getOwnerId();
+        $instagramPost->Handle = $handle;
         $instagramPost->Link = $instagramMedia->getLink();
         $instagramPost->Type = $instagramMedia->getType();
         $instagramPost->ImageLowResolutionUrl = $instagramMedia->getImageLowResolutionUrl();
