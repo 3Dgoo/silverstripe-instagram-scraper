@@ -44,30 +44,35 @@ class ImportInstagramPostsTask extends BuildTask
         }
 
         foreach ($instagramMedias as $instagramMedia) {
-            $shortCode = $instagramMedia->getShortCode();
-
-            $instagramPost = InstagramPost::get()->filter(['ShortCode' => $shortCode])->first();
-
-            if (!$instagramPost || !$instagramPost->exists()) {
-                $instagramPost = InstagramPost::create();
-                $instagramPost->ShortCode = $shortCode;
-            }
-
-            $instagramPost->InstagramID = $instagramMedia->getId();
-            $instagramPost->Caption = $instagramMedia->getCaption();
-            $instagramPost->Handle = $instagramMedia->getOwnerId();
-            $instagramPost->Link = $instagramMedia->getLink();
-            $instagramPost->Type = $instagramMedia->getType();
-            $instagramPost->ImageLowResolutionUrl = $instagramMedia->getImageLowResolutionUrl();
-            $instagramPost->ImageThumbnailURL = $instagramMedia->getImageThumbnailUrl();
-            $instagramPost->ImageStandardResolutionUrl = $instagramMedia->getImageStandardResolutionUrl();
-            $instagramPost->ImageHighResolutionUrl = $instagramMedia->getImageHighResolutionUrl();
-            $instagramPost->Posted = $instagramMedia->getCreatedTime();
-            $instagramPost->LikesCount = $instagramMedia->getLikesCount();
-            $instagramPost->CommentsCount = $instagramMedia->getCommentsCount();
-            $instagramPost->write();
-
-            DB::alteration_message('Imported instagram post ' . $shortCode);
+            $this->importInstagramPost($instagramMedia);
         }
+    }
+
+    public function importInstagramPost($instagramMedia)
+    {
+        $shortCode = $instagramMedia->getShortCode();
+
+        $instagramPost = InstagramPost::get()->filter(['ShortCode' => $shortCode])->first();
+
+        if (!$instagramPost || !$instagramPost->exists()) {
+            $instagramPost = InstagramPost::create();
+            $instagramPost->ShortCode = $shortCode;
+        }
+
+        $instagramPost->InstagramID = $instagramMedia->getId();
+        $instagramPost->Caption = $instagramMedia->getCaption();
+        $instagramPost->Handle = $instagramMedia->getOwnerId();
+        $instagramPost->Link = $instagramMedia->getLink();
+        $instagramPost->Type = $instagramMedia->getType();
+        $instagramPost->ImageLowResolutionUrl = $instagramMedia->getImageLowResolutionUrl();
+        $instagramPost->ImageThumbnailURL = $instagramMedia->getImageThumbnailUrl();
+        $instagramPost->ImageStandardResolutionUrl = $instagramMedia->getImageStandardResolutionUrl();
+        $instagramPost->ImageHighResolutionUrl = $instagramMedia->getImageHighResolutionUrl();
+        $instagramPost->Posted = $instagramMedia->getCreatedTime();
+        $instagramPost->LikesCount = $instagramMedia->getLikesCount();
+        $instagramPost->CommentsCount = $instagramMedia->getCommentsCount();
+        $instagramPost->write();
+
+        DB::alteration_message('Imported instagram post ' . $shortCode);
     }
 }
