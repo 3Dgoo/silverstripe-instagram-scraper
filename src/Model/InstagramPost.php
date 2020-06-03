@@ -9,6 +9,7 @@ class InstagramPost extends DataObject
     private static $db = [
         'InstagramID' => 'Varchar(100)',
         'ShortCode' => 'Varchar(100)',
+        'Handle' => 'Varchar(100)',
         'Title' => 'Text',
         'ImageURL' => 'Varchar(1024)',
         'ImageThumbnailURL' => 'Varchar(1024)',
