@@ -1,0 +1,43 @@
+{
+    "name": "3dgoo/silverstripe-instagram-scraper",
+    "description": "An Instagram scraper module for Silverstripe",
+    "type": "silverstripe-vendormodule",
+    "keywords": ["silverstripe", "instagram", "scraper"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "3dgoo",
+            "email": "michael@3dgoo.com",
+            "homepage": "https://www.3dgoo.com"
+        }
+    ],
+    "require": {
+        "phpfastcache/phpfastcache": "^7.1",
+        "raiym/instagram-php-scraper": "^0.9",
+        "silverstripe/framework": "^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "extra": {
+        "installer-name": "silverstripe-instagram-scraper",
+        "expose": [
+            "images"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "X3dgoo\\silverstripe-instagram-scraper\\": "src/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/3dgoo/silverstripe-instagram-scraper/issues"
+    },
+    "scripts": {
+        "lint": "vendor/bin/phpcs src/ tests/",
+        "lint-clean": "vendor/bin/phpcbf src/ tests/"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
