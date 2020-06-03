@@ -18,6 +18,7 @@ class InstagramPost extends DataObject
     private static $singular_name = 'Instagram Post';
     private static $plural_name = 'Instagram Posts';
     private static $default_sort = 'Posted DESC';
+    private static $table_name = 'InstagramPost';
 
     private static $summary_fields = [
         'ShortCode',
