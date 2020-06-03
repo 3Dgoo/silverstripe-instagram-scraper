@@ -20,8 +20,8 @@ class ImportInstagramPostsTask extends BuildTask
     public function run($request)
     {
         $username = $request->getVar('username');
-        $username = Environment::getEnv('INSTAGRAM_USERNAME');
-        $password = Environment::getEnv('INSTAGRAM_PASSWORD');
+        $loginUsername = Environment::getEnv('INSTAGRAM_USERNAME');
+        $loginPassword = Environment::getEnv('INSTAGRAM_PASSWORD');
 
         if (!$username) {
             return;
@@ -29,8 +29,8 @@ class ImportInstagramPostsTask extends BuildTask
 
         $instagram = null;
 
-        if ($username && $password) {
-            $instagram = Instagram::withCredentials($username, $password, new Psr16Adapter('Files'));
+        if ($loginUsername && $loginPassword) {
+            $instagram = Instagram::withCredentials($loginUsername, $loginPassword, new Psr16Adapter('Files'));
             $instagram->login();
             $instagram->saveSession();
         } else {
@@ -60,6 +60,7 @@ class ImportInstagramPostsTask extends BuildTask
 
             $instagramPost->InstagramID = $instagramID;
             $instagramPost->Title = $title;
+            $instagramPost->Username = $username;
             $instagramPost->ImageURL = $imageURL;
             $instagramPost->ImageThumbnailURL = $imageThumbnailURL;
             $instagramPost->Posted = $posted;
