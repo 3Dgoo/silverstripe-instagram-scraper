@@ -24,7 +24,7 @@ An Instagram scraper module for Silverstripe.
 
 Import Instagram posts of a certain username through running the following dev task:
 
-    php vendor/silverstripe/framework/cli-script.php dev/tasks/import-instagram-posts?username=<username>
+    php vendor/silverstripe/framework/cli-script.php dev/tasks/import-instagram-posts username=<username>
 
 
 Sometimes Instagram may require us to log in to fetch this data. This can be done by adding the following to our
