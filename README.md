@@ -35,7 +35,7 @@ Sometimes Instagram may require us to log in to fetch this data. This can be don
 
 Once our Instagram posts are imported we can display them with the following code:
 
-PageController.php
+**PageController.php**
 
     use X3dgoo\InstagramScraper\Model\InstagramPost;
 
@@ -51,7 +51,7 @@ PageController.php
         }
     }
 
-Page.ss
+**Page.ss**
 
     <% if $InstagramPosts %>
     <div class="instagram-posts">
