@@ -15,7 +15,7 @@ class ImportInstagramPostsTaskTest extends SapphireTest
         $importInstagramPostsTask = ImportInstagramPostsTask::singleton();
         $this->assertNotNull($importInstagramPostsTask);
 
-        $request = HTTPRequest::create(
+        $request = new HTTPRequest(
             'GET',
             'dev/tasks/import-instagram-posts',
             []
