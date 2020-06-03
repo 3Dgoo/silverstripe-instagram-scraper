@@ -22,7 +22,7 @@ class ImportInstagramPostsTaskTest extends SapphireTest
             []
         );
 
-        $response = $importInstagramPostsTask->run($request);
+        $importInstagramPostsTask->run($request);
 
         $this->assertEquals(0, InstagramPost::get()->count());
 
@@ -34,7 +34,7 @@ class ImportInstagramPostsTaskTest extends SapphireTest
             ]
         );
 
-        $response = $importInstagramPostsTask->run($request);
+        $importInstagramPostsTask->run($request);
 
         $this->assertEquals(20, InstagramPost::get()->count());
     }
