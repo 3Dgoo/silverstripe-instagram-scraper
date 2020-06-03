@@ -13,6 +13,11 @@ class InstagramPost extends DataObject
         'ImageURL' => 'Varchar(1024)',
         'ImageThumbnailURL' => 'Varchar(1024)',
         'Posted' => 'Datetime',
+        'Active' => 'Boolean',
+    ];
+
+    private static $defaults = [
+        'Active' => true,
     ];
 
     private static $singular_name = 'Instagram Post';
