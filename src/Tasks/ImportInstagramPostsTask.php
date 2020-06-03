@@ -7,7 +7,6 @@ use Phpfastcache\Helper\Psr16Adapter;
 use SilverStripe\Core\Environment;
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\ORM\DB;
-use SilverStripe\SiteConfig\SiteConfig;
 use X3dgoo\InstagramScraper\Model\InstagramPost;
 
 class ImportInstagramPostsTask extends BuildTask
@@ -20,11 +19,11 @@ class ImportInstagramPostsTask extends BuildTask
 
     public function run($request)
     {
-        $siteConfig = SiteConfig::current_site_config();
+        $subject = $request->getVar('subject');
         $username = Environment::getEnv('INSTAGRAM_USERNAME');
         $password = Environment::getEnv('INSTAGRAM_PASSWORD');
 
-        if (!$siteConfig || !$siteConfig->exists() || !$siteConfig->InstagramID) {
+        if (!$subject) {
             return;
         }
 
@@ -38,7 +37,7 @@ class ImportInstagramPostsTask extends BuildTask
             $instagram = new Instagram();
         }
 
-        $instagramMedias = $instagram->getMedias($siteConfig->InstagramID);
+        $instagramMedias = $instagram->getMedias($subject);
 
         if (empty($instagramMedias)) {
             return;
