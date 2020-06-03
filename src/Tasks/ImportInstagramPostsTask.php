@@ -3,6 +3,7 @@
 namespace X3dgoo\InstagramScraper\Tasks;
 
 use InstagramScraper\Instagram;
+use InstagramScraper\Model\Media;
 use Phpfastcache\Helper\Psr16Adapter;
 use SilverStripe\Core\Environment;
 use SilverStripe\Dev\BuildTask;
@@ -42,6 +43,9 @@ class ImportInstagramPostsTask extends BuildTask
         }
     }
 
+    /**
+     * @param Media $instagramMedia
+     */
     public function importInstagramPost($instagramMedia)
     {
         $shortCode = $instagramMedia->getShortCode();
