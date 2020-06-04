@@ -15,6 +15,11 @@ class InstagramAdminTest extends FunctionalTest
         $this->logInWithPermission('ADMIN');
 
         $instagramAdmin = InstagramAdmin::singleton();
+
+        $instagramPost = InstagramPost::create();
+        $instagramPost->ImageThumbnailURL = 'https://via.placeholder.com/300/000/000.png';
+        $instagramPost->write();
+
         $response = $this->get($instagramAdmin->Link());
 
         $this->assertEquals(200, $response->getStatusCode());
@@ -22,11 +27,5 @@ class InstagramAdminTest extends FunctionalTest
             '.breadcrumbs-wrapper .crumb.last',
             ['Instagram']
         );
-
-        $instagramPost1 = InstagramPost::create();
-        $instagramPost1->ImageThumbnailURL = 'https://via.placeholder.com/300/000/000.png';
-        $instagramPost1->write();
-
-        $response = $this->get($instagramAdmin->Link());
     }
 }
