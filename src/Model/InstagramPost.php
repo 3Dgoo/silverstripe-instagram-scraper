@@ -3,8 +3,10 @@
 namespace X3dgoo\InstagramScraper\Model;
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\LiteralField;
 
 /**
+ * @property bool $Show
  * @property string $InstagramID
  * @property string $ShortCode
  * @property string $Handle
@@ -18,11 +20,11 @@ use SilverStripe\ORM\DataObject;
  * @property mixed $Posted
  * @property int $LikesCount
  * @property int $CommentsCount
- * @property bool $Show
  */
 class InstagramPost extends DataObject
 {
     private static $db = [
+        'Show' => 'Boolean',
         'InstagramID' => 'Varchar(100)',
         'ShortCode' => 'Varchar(100)',
         'Handle' => 'Varchar(100)',
@@ -36,7 +38,6 @@ class InstagramPost extends DataObject
         'Posted' => 'Datetime',
         'LikesCount' => 'Int',
         'CommentsCount' => 'Int',
-        'Show' => 'Boolean',
     ];
 
     private static $defaults = [
@@ -50,7 +51,6 @@ class InstagramPost extends DataObject
 
     private static $summary_fields = [
         'ImageThumbnailURL',
-        'ShortCode',
         'Handle',
         'Caption.Summary',
         'Posted',
@@ -62,4 +62,27 @@ class InstagramPost extends DataObject
         'Caption.Summary' => 'Caption',
         'Show.Nice' => 'Show',
     ];
+
+    public function getCMSFields()
+    {
+        $fields = parent::getCMSFields();
+
+        if ($this->ImageThumbnailURL) {
+            $fields->addFieldToTab(
+                'Root.Main',
+                LiteralField::create(
+                    'ImagePreview',
+                    '<div class="form-group field text">' .
+                        '<label class="form__field-label">Image</label>' .
+                        '<div class="form__field-holder">' .
+                        '<img src="' . $this->ImageThumbnailURL . '" style="max-width: 200px;" />' .
+                        '</div>' .
+                        '</div>'
+                ),
+                'Show'
+            );
+        }
+
+        return $fields;
+    }
 }

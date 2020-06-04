@@ -30,7 +30,7 @@ class InstagramAdmin extends ModelAdmin
                 $gridFieldConfig->getComponentByType(GridFieldDataColumns::class)->setFieldFormatting([
                     'ImageThumbnailURL' => function ($value, $item) {
                         if ($value) {
-                            return '<img src="' . $value . '" style="width: 100px;" />';
+                            return '<img src="' . $value . '" style="max-width: 100px;" />';
                         }
                     },
                 ]);

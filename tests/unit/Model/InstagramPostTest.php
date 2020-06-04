@@ -16,4 +16,16 @@ class InstagramPostTest extends SapphireTest
 
         $this->assertNotNull($instagramPost);
     }
+
+    public function testGetCMSFields()
+    {
+        $instagramPost = InstagramPost::create();
+        $instagramPost->ImageThumbnailURL = 'https://www.google.com/image.png';
+        $instagramPost->write();
+
+        $fields = $instagramPost->getCMSFields();
+
+        $this->assertNotNull($fields);
+        $this->assertNotNull($fields->fieldByName('Root')->fieldByName('Main')->fieldByName('Show'));
+    }
 }
