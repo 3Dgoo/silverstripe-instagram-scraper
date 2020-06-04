@@ -17,6 +17,12 @@ class InstagramAdminTest extends FunctionalTest
         $instagramAdmin = InstagramAdmin::singleton();
         $response = $this->get($instagramAdmin->Link());
 
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertPartialMatchBySelector(
+            '.breadcrumbs-wrapper .crumb.last',
+            ['Instagram']
+        );
+
         $instagramPost1 = InstagramPost::create();
         $instagramPost1->ImageThumbnailURL = 'https://www.google.com/image.png';
         $instagramPost1->write();
@@ -24,10 +30,8 @@ class InstagramAdminTest extends FunctionalTest
         $instagramPost2 = InstagramPost::create();
         $instagramPost2->write();
 
+        $response = $this->get($instagramAdmin->Link());
+
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertPartialMatchBySelector(
-            '.breadcrumbs-wrapper .crumb.last',
-            ['Instagram']
-        );
     }
 }
