@@ -2,8 +2,8 @@
 
 namespace X3dgoo\InstagramScraper\Model;
 
-use SilverStripe\ORM\DataObject;
 use SilverStripe\Forms\LiteralField;
+use SilverStripe\ORM\DataObject;
 
 /**
  * @property bool $Show

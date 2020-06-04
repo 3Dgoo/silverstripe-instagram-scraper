@@ -20,7 +20,7 @@ class InstagramPostTest extends SapphireTest
     public function testGetCMSFields()
     {
         $instagramPost = InstagramPost::create();
-        $instagramPost->ImageThumbnailURL = 'https://www.google.com/image.png';
+        $instagramPost->ImageThumbnailURL = 'https://via.placeholder.com/300/000/000.png';
         $instagramPost->write();
 
         $fields = $instagramPost->getCMSFields();

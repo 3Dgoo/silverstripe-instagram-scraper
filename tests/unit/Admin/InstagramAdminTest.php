@@ -24,7 +24,7 @@ class InstagramAdminTest extends FunctionalTest
         );
 
         $instagramPost1 = InstagramPost::create();
-        $instagramPost1->ImageThumbnailURL = 'https://www.google.com/image.png';
+        $instagramPost1->ImageThumbnailURL = 'https://via.placeholder.com/300/000/000.png';
         $instagramPost1->write();
 
         $instagramPost2 = InstagramPost::create();
