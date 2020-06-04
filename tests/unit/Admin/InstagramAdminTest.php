@@ -26,5 +26,7 @@ class InstagramAdminTest extends FunctionalTest
         $instagramPost1 = InstagramPost::create();
         $instagramPost1->ImageThumbnailURL = 'https://via.placeholder.com/300/000/000.png';
         $instagramPost1->write();
+
+        $response = $this->get($instagramAdmin->Link());
     }
 }
