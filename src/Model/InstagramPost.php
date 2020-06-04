@@ -4,6 +4,22 @@ namespace X3dgoo\InstagramScraper\Model;
 
 use SilverStripe\ORM\DataObject;
 
+/**
+ * @property string $InstagramID
+ * @property string $ShortCode
+ * @property string $Handle
+ * @property string $Caption
+ * @property string $Link
+ * @property string $Type
+ * @property string $ImageLowResolutionUrl
+ * @property string $ImageStandardResolutionUrl
+ * @property string $ImageHighResolutionUrl
+ * @property string $ImageThumbnailURL
+ * @property mixed $Posted
+ * @property int $LikesCount
+ * @property int $CommentsCount
+ * @property bool $Show
+ */
 class InstagramPost extends DataObject
 {
     private static $db = [
@@ -33,9 +49,16 @@ class InstagramPost extends DataObject
     private static $table_name = 'InstagramPost';
 
     private static $summary_fields = [
+        'ImageThumbnailURL',
         'ShortCode',
         'Handle',
         'Caption',
         'Posted',
+        'Show.Nice',
+    ];
+
+    private static $field_labels = [
+        'ImageThumbnailURL' => 'Image',
+        'Show.Nice' => 'Show',
     ];
 }
