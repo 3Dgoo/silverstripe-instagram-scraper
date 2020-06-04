@@ -30,7 +30,7 @@ class ImportInstagramPostsTaskTest extends SapphireTest
             'GET',
             'dev/tasks/import-instagram-posts',
             [
-                'handle' => 'instagram'
+                'handle' => 'instagram',
             ]
         );
 

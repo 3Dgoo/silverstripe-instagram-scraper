@@ -52,13 +52,14 @@ class InstagramPost extends DataObject
         'ImageThumbnailURL',
         'ShortCode',
         'Handle',
-        'Caption',
+        'Caption.Summary',
         'Posted',
         'Show.Nice',
     ];
 
     private static $field_labels = [
         'ImageThumbnailURL' => 'Image',
+        'Caption.Summary' => 'Caption',
         'Show.Nice' => 'Show',
     ];
 }
