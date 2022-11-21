@@ -28,12 +28,14 @@ class ImportInstagramPostsTask extends BuildTask
             return;
         }
 
-        $instagram = new Instagram();
+        $instagram = null;
 
         if ($loginUsername && $loginPassword) {
-            $instagram = Instagram::withCredentials($loginUsername, $loginPassword, new Psr16Adapter('Files'));
+            $instagram = Instagram::withCredentials(new \GuzzleHttp\Client(), $loginUsername, $loginPassword, new Psr16Adapter('Files'));
             $instagram->login();
             $instagram->saveSession();
+        } else {
+            $instagram = new Instagram(new \GuzzleHttp\Client());
         }
 
         $instagramMedias = $instagram->getMedias($handle);
