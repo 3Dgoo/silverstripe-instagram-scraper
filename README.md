@@ -13,8 +13,8 @@ An Instagram scraper module for Silverstripe.
 ## Requirements
 
 * [Silverstripe Framework 4.x](https://github.com/silverstripe/silverstripe-framework)
-* [Instagram PHP Scraper 0.9](https://github.com/postaddictme/instagram-php-scraper)
-* [phpfastcache 7.1](https://github.com/PHPSocialNetwork/phpfastcache)
+* [Instagram PHP Scraper 0.12](https://github.com/postaddictme/instagram-php-scraper)
+* [phpfastcache 8.1](https://github.com/PHPSocialNetwork/phpfastcache)
 
 ## Installation (with composer)
 

@@ -31,7 +31,7 @@ class ImportInstagramPostsTask extends BuildTask
         $instagram = null;
 
         if ($loginUsername && $loginPassword) {
-            $instagram = Instagram::withCredentials(new \GuzzleHttp\Client()$loginUsername, $loginPassword, new Psr16Adapter('Files'));
+            $instagram = Instagram::withCredentials(new \GuzzleHttp\Client(), $loginUsername, $loginPassword, new Psr16Adapter('Files'));
             $instagram->login();
             $instagram->saveSession();
         } else {
