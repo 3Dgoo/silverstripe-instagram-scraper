@@ -12,7 +12,8 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.0"
+        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/psr7": "^1.7.0",
         "phpfastcache/phpfastcache": "^8.1",
         "raiym/instagram-php-scraper": "^0.12",
         "silverstripe/framework": "^4.10"
